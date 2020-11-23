@@ -1,15 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9fb800d8-a7e7-494e-a65d-c0125b5813bd" name="Default Changelist" comment="" />
+    <list default="true" id="9fb800d8-a7e7-494e-a65d-c0125b5813bd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/BranchController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Branch.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/BranchFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_23_193800_create_branches_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeders/BranchSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/action-message.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/action-section.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/application-logo.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/application-mark.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/authentication-card-logo.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/authentication-card.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/button.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/confirmation-modal.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/confirms-password.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/danger-button.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/dialog-modal.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/dropdown-link.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/dropdown.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/form-section.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/input-error.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/input.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/label.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/modal.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/nav-link.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/responsive-nav-link.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/secondary-button.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/section-border.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/section-title.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/switchable-team.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/validation-errors.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="2" />
@@ -139,6 +182,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1khB1Ekbx8JLt2lhprWN8vM2GZi" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -153,6 +197,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -169,7 +214,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606142725901</updated>
-      <workItem from="1606142726955" duration="2025000" />
+      <workItem from="1606142726955" duration="6462000" />
+      <workItem from="1606160311266" duration="168000" />
     </task>
     <servers />
   </component>
@@ -177,6 +223,18 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="2338" y="240" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606156620299">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state x="2338" y="240" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1200/0.215.1920.1080@1920.0.1920.1200" timestamp="1606156620299" />
+    <state x="2412" y="58" width="925" height="1047" key="CommitChangelistDialog2" timestamp="1606160461797">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state x="2412" y="58" width="925" height="1047" key="CommitChangelistDialog2/1920.0.1920.1200/0.215.1920.1080@1920.0.1920.1200" timestamp="1606160461797" />
+    <state x="2102" y="86" width="1536" height="988" key="DiffContextDialog" timestamp="1606160438276">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state x="2102" y="86" width="1536" height="988" key="DiffContextDialog/1920.0.1920.1200/0.215.1920.1080@1920.0.1920.1200" timestamp="1606160438276" />
     <state width="1870" height="303" key="GridCell.Tab.0.bottom" timestamp="1606145149024">
       <screen x="1920" y="0" width="1920" height="1200" />
     </state>
@@ -193,9 +251,17 @@
       <screen x="1920" y="0" width="1920" height="1200" />
     </state>
     <state width="1870" height="303" key="GridCell.Tab.0.right/1920.0.1920.1200/0.215.1920.1080@1920.0.1920.1200" timestamp="1606145149024" />
+    <state x="2803" y="327" key="SettingsEditor" timestamp="1606148314486">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state x="2803" y="327" key="SettingsEditor/1920.0.1920.1200/0.215.1920.1080@1920.0.1920.1200" timestamp="1606148314486" />
     <state x="2681" y="264" width="387" height="635" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1606145511789">
       <screen x="1920" y="0" width="1920" height="1200" />
     </state>
     <state x="2681" y="264" width="387" height="635" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1920.0.1920.1200/0.215.1920.1080@1920.0.1920.1200" timestamp="1606145511789" />
+    <state x="2543" y="260" width="672" height="678" key="search.everywhere.popup" timestamp="1606152004655">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state x="2543" y="260" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1200/0.215.1920.1080@1920.0.1920.1200" timestamp="1606152004655" />
   </component>
 </project>
