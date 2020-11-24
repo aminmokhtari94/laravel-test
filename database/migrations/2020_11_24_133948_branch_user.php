@@ -13,10 +13,10 @@ class BranchUser extends Migration
      */
     public function up()
     {
-        Schema::create('attribute_category', function (Blueprint $table) {
+        Schema::create('branch_user', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
-            $table->integer('branch_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->bigInteger('branch_id')->unsigned()->index();
             $table->softDeletes();
             $table->timestamps();
 

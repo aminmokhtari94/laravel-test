@@ -15,8 +15,8 @@ class AttributeProduct extends Migration
     {
         Schema::create('attribute_product', function (Blueprint $table) {
             $table->id();
-            $table->integer('attribute_id')->unsigned();
-            $table->integer('product_id')->unsigned();
+            $table->bigInteger('attribute_id')->unsigned()->index();
+            $table->bigInteger('product_id')->unsigned()->index();
             $table->string('value');
             $table->softDeletes();
             $table->timestamps();

@@ -15,8 +15,8 @@ class AttributeCategory extends Migration
     {
         Schema::create('attribute_category', function (Blueprint $table) {
             $table->id();
-            $table->integer('attribute_id')->unsigned();
-            $table->integer('category_id')->unsigned();
+            $table->bigInteger('attribute_id')->unsigned()->index();
+            $table->bigInteger('category_id')->unsigned()->index();
             $table->softDeletes();
             $table->timestamps();
 
