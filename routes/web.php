@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AttributeController;
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WarrantyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +22,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('Dashboard');
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
-    Route::resource('products', 'ProductConrtoller');
-})->name('dashboard');
+    Route::get('/dashboard', function () {
+        return Inertia\Inertia::render('Dashboard');
+
+    })->name('dashboard');
+
+    Route::resource('attributes', AttributeController::class);
+    Route::resource('branches', BranchController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('warranties', WarrantyController::class);
+
+});
