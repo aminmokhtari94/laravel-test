@@ -4,8 +4,35 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes, CascadeSoftDeletes;
+
+    protected $fillable = ['title', 'unit', 'parent_id', 'sort_order'];
+
+
+    // Each category may have one parent
+    public function parent()
+    {
+        return $this->belongsTo(static::class, 'parent_id', 'id');
+    }
+
+    // Each category may have multiple children
+    public function children()
+    {
+        return $this->hasMany(static::class, 'parent_id', 'id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function attributes()
+    {
+        return $this->hasMany(Attribute::class);
+    }
 }
