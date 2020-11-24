@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Branch;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -16,79 +17,90 @@ class BranchController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Organizations/Index', [
-            'filters' => Request::all('search', 'trashed'),
-            'organizations' => Auth::user()->account->organizations()
-                ->orderBy('name')
-                ->filter(Request::only('search', 'trashed'))
-                ->paginate()
-                ->only('id', 'name', 'phone', 'city', 'deleted_at'),
+        return Inertia::render('Branch/BranchList', [
+            'branches' => auth()->user()->branches()->get()
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
-        //
+        return Inertia::render('Branch/BranchCreate');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+        $branch = Branch::create(['name' => $request->name]);
+        auth()->user()->branches()->attach($branch);
+
+        return redirect()->route('branches.index')->with('message', 'Created Successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Branch $branch
-     * @return \Illuminate\Http\Response
+     * @param Branch $branch
+     * @return void
      */
     public function show(Branch $branch)
     {
-        //
+        // nothing to show
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Branch $branch
-     * @return \Illuminate\Http\Response
+     * @param Branch $branch
+     * @return Response
      */
     public function edit(Branch $branch)
     {
-        //
+        return Inertia::render('Branch/BranchEdit', ['branch' => $branch]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Branch $branch
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Branch $branch
+     * @return RedirectResponse
      */
     public function update(Request $request, Branch $branch)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $branch->update([
+            'name' => $request->name
+        ]);
+
+        return redirect()->route('branches.index')->with('message', 'Updated Successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Branch $branch
-     * @return \Illuminate\Http\Response
+     * @param Branch $branch
+     * @return RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Branch $branch)
     {
-        //
+        $branch->delete();
+        return redirect()->back()->with('message', 'Deleted Successfully.');
     }
 }
