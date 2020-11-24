@@ -11,7 +11,7 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
 
-    protected $fillable = ['title', 'unit', 'parent_id', 'sort_order'];
+    protected $fillable = ['name', 'unit', 'parent_id', 'sort_order'];
 
 
     // Each category may have one parent
