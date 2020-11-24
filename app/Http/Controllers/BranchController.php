@@ -4,17 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class BranchController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        //
+        return Inertia::render('Organizations/Index', [
+            'filters' => Request::all('search', 'trashed'),
+            'organizations' => Auth::user()->account->organizations()
+                ->orderBy('name')
+                ->filter(Request::only('search', 'trashed'))
+                ->paginate()
+                ->only('id', 'name', 'phone', 'city', 'deleted_at'),
+        ]);
     }
 
     /**
@@ -30,7 +39,7 @@ class BranchController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +50,7 @@ class BranchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Branch  $branch
+     * @param \App\Models\Branch $branch
      * @return \Illuminate\Http\Response
      */
     public function show(Branch $branch)
@@ -52,7 +61,7 @@ class BranchController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Branch  $branch
+     * @param \App\Models\Branch $branch
      * @return \Illuminate\Http\Response
      */
     public function edit(Branch $branch)
@@ -63,8 +72,8 @@ class BranchController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Branch  $branch
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Branch $branch
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Branch $branch)
@@ -75,7 +84,7 @@ class BranchController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Branch  $branch
+     * @param \App\Models\Branch $branch
      * @return \Illuminate\Http\Response
      */
     public function destroy(Branch $branch)

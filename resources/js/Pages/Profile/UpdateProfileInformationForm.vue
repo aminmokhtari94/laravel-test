@@ -12,21 +12,29 @@
             <!-- Profile Photo -->
             <div class="col-span-6 sm:col-span-4" v-if="$page.jetstream.managesProfilePhotos">
                 <!-- Profile Photo File Input -->
-                <input type="file" class="hidden"
-                            ref="photo"
-                            @change="updatePhotoPreview">
+                <input type="file" class="hidden" ref="photo" @change="updatePhotoPreview" />
 
                 <jet-label for="photo" value="Photo" />
 
                 <!-- Current Profile Photo -->
-                <div class="mt-2" v-show="! photoPreview">
-                    <img :src="user.profile_photo_url" alt="Current Profile Photo" class="rounded-full h-20 w-20 object-cover">
+                <div class="mt-2" v-show="!photoPreview">
+                    <img
+                        :src="user.profile_photo_url"
+                        alt="Current Profile Photo"
+                        class="rounded-full h-20 w-20 object-cover"
+                    />
                 </div>
 
                 <!-- New Profile Photo Preview -->
                 <div class="mt-2" v-show="photoPreview">
-                    <span class="block rounded-full w-20 h-20"
-                          :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
+                    <span
+                        class="block rounded-full w-20 h-20"
+                        :style="
+                            'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' +
+                                photoPreview +
+                                '\');'
+                        "
+                    >
                     </span>
                 </div>
 
@@ -34,7 +42,12 @@
                     Select A New Photo
                 </jet-secondary-button>
 
-                <jet-secondary-button type="button" class="mt-2" @click.native.prevent="deletePhoto" v-if="user.profile_photo_path">
+                <jet-secondary-button
+                    type="button"
+                    class="mt-2"
+                    @click.native.prevent="deletePhoto"
+                    v-if="user.profile_photo_path"
+                >
                     Remove Photo
                 </jet-secondary-button>
 
@@ -44,7 +57,13 @@
             <!-- Name -->
             <div class="col-span-6 sm:col-span-4">
                 <jet-label for="name" value="Name" />
-                <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
+                <jet-input
+                    id="name"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.name"
+                    autocomplete="name"
+                />
                 <jet-input-error :message="form.error('name')" class="mt-2" />
             </div>
 
@@ -69,75 +88,80 @@
 </template>
 
 <script>
-    import JetButton from '@/Jetstream/Button'
-    import JetFormSection from '@/Jetstream/FormSection'
-    import JetInput from '@/Jetstream/Input'
-    import JetInputError from '@/Jetstream/InputError'
-    import JetLabel from '@/Jetstream/Label'
-    import JetActionMessage from '@/Jetstream/ActionMessage'
-    import JetSecondaryButton from '@/Jetstream/SecondaryButton'
+import JetButton from '@/Jetstream/Button'
+import JetFormSection from '@/Jetstream/FormSection'
+import JetInput from '@/Jetstream/Input'
+import JetInputError from '@/Jetstream/InputError'
+import JetLabel from '@/Jetstream/Label'
+import JetActionMessage from '@/Jetstream/ActionMessage'
+import JetSecondaryButton from '@/Jetstream/SecondaryButton'
 
-    export default {
-        components: {
-            JetActionMessage,
-            JetButton,
-            JetFormSection,
-            JetInput,
-            JetInputError,
-            JetLabel,
-            JetSecondaryButton,
-        },
+export default {
+    components: {
+        JetActionMessage,
+        JetButton,
+        JetFormSection,
+        JetInput,
+        JetInputError,
+        JetLabel,
+        JetSecondaryButton
+    },
 
-        props: ['user'],
+    props: ['user'],
 
-        data() {
-            return {
-                form: this.$inertia.form({
-                    '_method': 'PUT',
+    data() {
+        return {
+            form: this.$inertia.form(
+                {
+                    _method: 'PUT',
                     name: this.user.name,
                     email: this.user.email,
-                    photo: null,
-                }, {
+                    photo: null
+                },
+                {
                     bag: 'updateProfileInformation',
-                    resetOnSuccess: false,
-                }),
-
-                photoPreview: null,
-            }
-        },
-
-        methods: {
-            updateProfileInformation() {
-                if (this.$refs.photo) {
-                    this.form.photo = this.$refs.photo.files[0]
+                    resetOnSuccess: false
                 }
+            ),
 
-                this.form.post(route('user-profile-information.update'), {
-                    preserveScroll: true
-                });
-            },
+            photoPreview: null
+        }
+    },
 
-            selectNewPhoto() {
-                this.$refs.photo.click();
-            },
+    methods: {
+        updateProfileInformation() {
+            if (this.$refs.photo) {
+                this.form.photo = this.$refs.photo.files[0]
+            }
 
-            updatePhotoPreview() {
-                const reader = new FileReader();
-
-                reader.onload = (e) => {
-                    this.photoPreview = e.target.result;
-                };
-
-                reader.readAsDataURL(this.$refs.photo.files[0]);
-            },
-
-            deletePhoto() {
-                this.$inertia.delete(route('current-user-photo.destroy'), {
-                    preserveScroll: true,
-                }).then(() => {
-                    this.photoPreview = null
-                });
-            },
+            this.form.post(route('user-profile-information.update'), {
+                preserveScroll: true
+            })
         },
+
+        selectNewPhoto() {
+            this.$refs.photo.click()
+        },
+
+        updatePhotoPreview() {
+            const reader = new FileReader()
+
+            reader.onload = e => {
+                this.photoPreview = e.target.result
+            }
+
+            reader.readAsDataURL(this.$refs.photo.files[0])
+        },
+
+        deletePhoto() {
+            this.$inertia
+                .delete(route('current-user-photo.destroy'), {
+                    preserveScroll: true
+                })
+                .then(() => {
+                    this.photoPreview = null
+                })
+        }
     }
+}
 </script>
