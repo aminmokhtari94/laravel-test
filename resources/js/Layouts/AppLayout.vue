@@ -17,6 +17,46 @@
                             <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                 Dashboard
                             </jet-nav-link>
+                            <jet-nav-link
+                                :href="route('branches.index')"
+                                :active="
+                                    route().current('branches.index') ||
+                                        route().current('branches.create') ||
+                                        route().current('branches.edit')
+                                "
+                            >
+                                Branches
+                            </jet-nav-link>
+                            <jet-nav-link
+                                :href="route('attributes.index')"
+                                :active="
+                                    route().current('attributes.index') ||
+                                        route().current('attributes.create') ||
+                                        route().current('attributes.edit')
+                                "
+                            >
+                                Attributes
+                            </jet-nav-link>
+                            <jet-nav-link
+                                :href="route('categories.index')"
+                                :active="
+                                    route().current('categories.index') ||
+                                        route().current('categories.create') ||
+                                        route().current('categories.edit')
+                                "
+                            >
+                                Categories
+                            </jet-nav-link>
+                            <jet-nav-link
+                                :href="route('products.index')"
+                                :active="
+                                    route().current('products.index') ||
+                                        route().current('products.create') ||
+                                        route().current('products.edit')
+                                "
+                            >
+                                Products
+                            </jet-nav-link>
                         </div>
                     </div>
 
@@ -297,7 +337,27 @@
 
         <!-- Page Content -->
         <main>
-            <slot></slot>
+            <div class="container-fluid">
+                <div class="max-w-7xl my-3 mx-auto sm:px-6 lg:px-8">
+                    <div
+                        class="px-4 py-3 leading-normal text-green-700 bg-green-100 rounded-lg"
+                        role="alert"
+                        v-if="$page.flash.message"
+                    >
+                        <p class="font-bold">{{ $page.flash.message }}</p>
+                    </div>
+                    <div
+                        class="px-4 py-3 leading-normal text-red-700 bg-red-100 rounded-lg"
+                        role="alert"
+                        v-if="Object.entries($page.errors).length"
+                    >
+                        <ul>
+                            <li v-for="err in $page.errors" :key="err">{{ err[0] }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <slot></slot>
+            </div>
         </main>
 
         <!-- Modal Portal -->

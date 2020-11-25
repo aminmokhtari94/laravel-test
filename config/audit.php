@@ -119,7 +119,7 @@ return [
 
     'drivers' => [
         'database' => [
-            'table'      => 'laravel',
+            'table'      => 'audits',
             'connection' => 'mongodb',
         ],
     ],

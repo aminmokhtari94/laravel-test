@@ -8,13 +8,6 @@
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <div
-                    class="px-4 py-3 leading-normal text-green-700 bg-green-100 rounded-lg"
-                    role="alert"
-                    v-if="$page.flash.message"
-                >
-                    <p class="font-bold">{{ $page.flash.message }}</p>
-                </div>
                 <div class="mx-4 my-4">
                     <inertia-link :href="route('attributes.create')">
                         <jet-button>
