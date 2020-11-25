@@ -63,13 +63,14 @@
                                         class="mt-1 block w-full"
                                         v-model="form.warranty_name"
                                         autocomplete="name"
+                                        placeholder="original"
                                     />
                                 </div>
                                 <div class="col-span-6 sm:col-span-4">
                                     <jet-label for="warranty_months" value="Warranty Months" />
                                     <jet-input
                                         id="warranty_months"
-                                        type="text"
+                                        type="number"
                                         class="mt-1 block w-full"
                                         v-model="form.warranty_months"
                                         autocomplete="name"
