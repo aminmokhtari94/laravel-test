@@ -100,6 +100,12 @@ class AttributeController extends Controller
      */
     public function destroy(Attribute $attribute)
     {
+        if(count($attribute->products)){
+            return redirect()->back()->withErrors('Deleted Failed! Some Product has this Attribute.');
+        }
+        if(count($attribute->categories)){
+            return redirect()->back()->withErrors('Deleted Failed! Some Category has this Attribute.');
+        }
         $attribute->delete();
         return redirect()->back()->with('message', 'Deleted Successfully.');
     }

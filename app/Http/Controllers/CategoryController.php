@@ -120,6 +120,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if(count($category->products)){
+            return redirect()->back()->withErrors('Deleted Failed! Category has some Product.');
+        }
         $category->delete();
         return redirect()->back()->with('message', 'Deleted Successfully.');
     }
