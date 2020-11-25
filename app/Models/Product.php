@@ -11,7 +11,7 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
 
-    protected $cascadeDeletes = ['attributes'];
+    protected $cascadeDeletes = ['warranty'];
 
     protected $fillable = ['name', 'category_id'];
 
@@ -22,7 +22,7 @@ class Product extends Model
 
     public function attributes()
     {
-        return $this->hasMany(Attribute::class);
+        return $this->belongsToMany(Attribute::class)->withPivot('value');
     }
 
     public function warranty()

@@ -99,11 +99,7 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
 
-        $category->attributes()->detach($category->attributes->map(function ($a) {
-            return $a->id;
-        }));
-
-        $category->attributes()->attach($request->has_attributes);
+        $category->attributes()->sync($request->has_attributes);
 
         return redirect()->route('categories.index')->with('message', 'Updated Successfully.');
     }

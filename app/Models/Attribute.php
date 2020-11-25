@@ -20,7 +20,6 @@ class Attribute extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class)
-            ->as('attribute')
             ->withTimestamps();
     }
 }

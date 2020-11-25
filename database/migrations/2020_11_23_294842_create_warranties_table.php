@@ -16,7 +16,8 @@ class CreateWarrantiesTable extends Migration
         Schema::create('warranties', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('product_id')->unsigned()->index();
-            $table->dateTime('started_at');
+            $table->string('name');
+            $table->dateTime('started_at')->nullable();
             $table->integer('duration_months');
             $table->softDeletes();
             $table->timestamps();
