@@ -7,7 +7,7 @@
         </template>
 
         <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+            <div class="mx-auto py-10 sm:px-6 lg:px-8">
                 <jet-form-section @submitted="createCategory">
                     <template #title>
                         Category
@@ -28,7 +28,18 @@
                                 v-model="category.name"
                                 autocomplete="name"
                             />
-                            <jet-input-error :message="form.error('name')" class="mt-2" />
+                        </div>
+                        <!-- Attribute -->
+                        <div class="col-span-6 sm:col-span-4">
+                            <jet-label for="attributes" value="Attributes" />
+                            <v-select
+                                id="attributes"
+                                v-model="category.attributes"
+                                :options="attributeOptions"
+                                :reduce="a => a.value"
+                                taggable
+                                multiple
+                            />
                         </div>
                     </template>
 
@@ -56,6 +67,9 @@ import JetInputError from '@/Jetstream/InputError'
 import JetLabel from '@/Jetstream/Label'
 import JetActionMessage from '@/Jetstream/ActionMessage'
 
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css'
+
 export default {
     components: {
         AppLayout,
@@ -64,8 +78,11 @@ export default {
         JetFormSection,
         JetInput,
         JetInputError,
-        JetLabel
+        JetLabel,
+        vSelect
     },
+
+    props: ['attributes'],
 
     data() {
         return {
@@ -74,11 +91,15 @@ export default {
     },
 
     computed: {
+        attributeOptions() {
+            return this.attributes.map(a => ({ label: a.name, value: a.id }))
+        },
         form() {
             return this.$inertia.form(
                 {
                     _method: 'POST',
-                    name: this.category.name
+                    name: this.category.name,
+                    has_attributes: this.category.attributes
                 },
                 {
                     bag: 'createCategory',

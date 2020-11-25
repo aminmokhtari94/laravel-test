@@ -28,6 +28,18 @@
                             />
                             <jet-input-error :message="form.error('name')" class="mt-2" />
                         </div>
+                        <!-- Attribute -->
+                        <div class="col-span-6 sm:col-span-4">
+                            <jet-label for="attributes" value="Attributes" />
+                            <v-select
+                                id="attributes"
+                                v-model="form.has_attributes"
+                                :options="attributeOptions"
+                                :reduce="a => a.value"
+                                taggable
+                                multiple
+                            />
+                        </div>
                     </template>
 
                     <template #actions>
@@ -54,6 +66,9 @@ import JetInputError from '@/Jetstream/InputError'
 import JetLabel from '@/Jetstream/Label'
 import JetActionMessage from '@/Jetstream/ActionMessage'
 
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css'
+
 export default {
     components: {
         AppLayout,
@@ -62,23 +77,31 @@ export default {
         JetFormSection,
         JetInput,
         JetInputError,
-        JetLabel
+        JetLabel,
+        vSelect
     },
 
-    props: ['category'],
+    props: ['category', 'attributes'],
 
     data() {
         return {
             form: this.$inertia.form(
                 {
                     _method: 'PUT',
-                    name: this.category.name
+                    name: this.category.name,
+                    has_attributes: this.category.has_attributes
                 },
                 {
                     bag: 'editCategory',
                     resetOnSuccess: false
                 }
             )
+        }
+    },
+
+    computed: {
+        attributeOptions() {
+            return this.attributes.map(a => ({ label: a.name, value: a.id }))
         }
     },
 

@@ -38,6 +38,12 @@
                                             scope="col"
                                             class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
+                                            Attributes
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
                                             Created At
                                         </th>
                                         <th
@@ -55,6 +61,9 @@
                                     <tr v-for="category in categories" :key="category.id">
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             {{ category.name }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            {{ category.attributes.map(a => a.name).join(', ') }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             {{ category.created_at }}

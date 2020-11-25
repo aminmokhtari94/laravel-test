@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attribute;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class CategoryController extends Controller
     public function index()
     {
         return Inertia::render('Category/CategoryList', [
-            'categories' => Category::all()
+            'categories' => Category::with('attributes')->get()
         ]);
     }
 
@@ -29,7 +30,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Category/CategoryCreate');
+        return Inertia::render('Category/CategoryCreate', [
+            'attributes' => Attribute::all()
+        ]);
     }
 
     /**
@@ -41,10 +44,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'has_attributes' => 'required'
         ]);
-
-        Category::create(['name' => $request->name]);
+        $cat = Category::create(['name' => $request->name]);
+        $cat->attributes()->attach($request->has_attributes);
 
         return redirect()->route('categories.index')->with('message', 'Created Successfully.');
     }
@@ -68,7 +72,13 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return Inertia::render('Category/CategoryEdit', ['category' => $category]);
+        $category->has_attributes = $category->attributes->map(function ($a) {
+            return $a->id;
+        });
+        return Inertia::render('Category/CategoryEdit', [
+            'category' => $category,
+            'attributes' => Attribute::all()
+        ]);
     }
 
     /**
@@ -81,12 +91,19 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'has_attributes' => 'required'
         ]);
 
         $category->update([
             'name' => $request->name
         ]);
+
+        $category->attributes()->detach($category->attributes->map(function ($a) {
+            return $a->id;
+        }));
+
+        $category->attributes()->attach($request->has_attributes);
 
         return redirect()->route('categories.index')->with('message', 'Updated Successfully.');
     }
