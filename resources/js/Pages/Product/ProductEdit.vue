@@ -53,29 +53,30 @@
                                     autocomplete="name"
                                 />
                             </div>
+                            <!-- Warranty -->
+                            <template v-if="categories.find(c => c.id === form.category_id).has_warranty">
+                                <div class="col-span-6 sm:col-span-4">
+                                    <jet-label for="warranty_name" value="Warranty Name" />
+                                    <jet-input
+                                        id="warranty_name"
+                                        type="text"
+                                        class="mt-1 block w-full"
+                                        v-model="form.warranty_name"
+                                        autocomplete="name"
+                                    />
+                                </div>
+                                <div class="col-span-6 sm:col-span-4">
+                                    <jet-label for="warranty_months" value="Warranty Months" />
+                                    <jet-input
+                                        id="warranty_months"
+                                        type="text"
+                                        class="mt-1 block w-full"
+                                        v-model="form.warranty_months"
+                                        autocomplete="name"
+                                    />
+                                </div>
+                            </template>
                         </template>
-
-                        <!-- Warranty -->
-                        <div class="col-span-6 sm:col-span-4">
-                            <jet-label for="warranty_name" value="Warranty Name" />
-                            <jet-input
-                                id="warranty_name"
-                                type="text"
-                                class="mt-1 block w-full"
-                                v-model="form.warranty_name"
-                                autocomplete="name"
-                            />
-                        </div>
-                        <div class="col-span-6 sm:col-span-4">
-                            <jet-label for="warranty_months" value="Warranty Months" />
-                            <jet-input
-                                id="warranty_months"
-                                type="text"
-                                class="mt-1 block w-full"
-                                v-model="form.warranty_months"
-                                autocomplete="name"
-                            />
-                        </div>
                     </template>
 
                     <template #actions>
@@ -132,14 +133,20 @@ export default {
                     name: this.product.name,
                     category_id: this.product.category_id,
                     attribute_values: avs,
-                    warranty_name: this.product.warranty.name,
-                    warranty_months: this.product.warranty.duration_months
+                    warranty_name: this.product.warranty ? this.product.warranty.name : '',
+                    warranty_months: this.product.warranty ? this.product.warranty.duration_months : ''
                 },
                 {
                     bag: 'editProduct',
                     resetOnSuccess: false
                 }
             )
+        }
+    },
+
+    watch: {
+        'form.category_id'() {
+            this.form.attribute_values = {}
         }
     },
 

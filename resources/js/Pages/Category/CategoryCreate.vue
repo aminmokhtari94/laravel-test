@@ -41,6 +41,13 @@
                                 multiple
                             />
                         </div>
+                        <!-- Warranty -->
+                        <div class="col-span-6 sm:col-span-4">
+                            <label class="block font-medium text-sm text-gray-700">
+                                <input type="checkbox" v-model="category.has_warranty" />
+                                <span class="ml-1">category has warranty</span>
+                            </label>
+                        </div>
                     </template>
 
                     <template #actions>
@@ -86,7 +93,7 @@ export default {
 
     data() {
         return {
-            category: {}
+            category: { has_warranty: false }
         }
     },
 
@@ -99,7 +106,8 @@ export default {
                 {
                     _method: 'POST',
                     name: this.category.name,
-                    has_attributes: this.category.attributes
+                    has_attributes: this.category.attributes,
+                    has_warranty: this.category.has_warranty
                 },
                 {
                     bag: 'createCategory',

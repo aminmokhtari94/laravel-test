@@ -12,7 +12,7 @@ class Category extends Model implements Auditable
 {
     use HasFactory, SoftDeletes, \OwenIt\Auditing\Auditable, CascadeSoftDeletes;
 
-    protected $fillable = ['name', 'unit', 'parent_id', 'sort_order'];
+    protected $fillable = ['name', 'has_warranty', 'unit', 'parent_id', 'sort_order'];
 
 
     // Each category may have one parent

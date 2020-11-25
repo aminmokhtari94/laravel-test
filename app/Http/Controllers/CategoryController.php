@@ -45,9 +45,14 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'has_attributes' => 'required'
+            'has_attributes' => 'required',
+            'has_warranty' => 'required|boolean'
         ]);
-        $cat = Category::create(['name' => $request->name]);
+
+        $cat = Category::create([
+            'name' => $request->name,
+            'has_warranty' => $request->has_warranty
+        ]);
         $cat->attributes()->attach($request->has_attributes);
 
         return redirect()->route('categories.index')->with('message', 'Created Successfully.');
@@ -92,11 +97,13 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'has_attributes' => 'required'
+            'has_attributes' => 'required',
+            'has_warranty' => 'required|boolean'
         ]);
 
         $category->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'has_warranty' => $request->has_warranty
         ]);
 
         $category->attributes()->sync($request->has_attributes);

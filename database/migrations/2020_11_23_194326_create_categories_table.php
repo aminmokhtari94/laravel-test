@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->integer('parent_id')->unsigned()->nullable();
             $table->string('name');
+            $table->boolean('has_warranty')->default(false);
             $table->string('unit')->default('pcs');
             $table->tinyInteger('sort_order')->nullable();
             $table->softDeletes();

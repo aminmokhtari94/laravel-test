@@ -53,7 +53,7 @@ class ProductController extends Controller
 
         $product->attributes()->sync($request->attribute_values);
 
-        if ($request->has('warranty_months')) {
+        if ($request->has('warranty_months') && Category::find($request->category_id)->has_warranty) {
             $product->warranty()->create(['name' => $request->warranty_name ? $request->warranty_name : 'orginal', 'duration_months' => $request->warranty_months]);
         }
 
@@ -106,11 +106,13 @@ class ProductController extends Controller
 
         $product->attributes()->sync($request->attribute_values);
 
-        if ($request->has('warranty_months')) {
+        if ( Category::find($request->category_id)->has_warranty) {
             if (!$product->has('warranty'))
                 $product->warranty()->create(['name' => $request->warranty_name ? $request->warranty_name : 'orginal', 'duration_months' => $request->warranty_months]);
             else
                 $product->warranty()->update(['name' => $request->warranty_name ? $request->warranty_name : 'orginal', 'duration_months' => $request->warranty_months]);
+        } else if ($product->has('warranty')) {
+            $product->warranty()->delete();
         }
 
         return redirect()->route('products.index')->with('message', 'Updated Successfully.');

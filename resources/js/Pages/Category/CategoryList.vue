@@ -44,7 +44,7 @@
                                             scope="col"
                                             class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
-                                            Created At
+                                            Has Warranty
                                         </th>
                                         <th
                                             scope="col"
@@ -66,7 +66,7 @@
                                             {{ category.attributes.map(a => a.name).join(', ') }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            {{ category.created_at }}
+                                            {{ category.has_warranty ? 'yes' : 'no' }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ category.updated_at }}
